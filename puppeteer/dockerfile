@@ -1,0 +1,7 @@
+
+from buildkite/puppeteer
+workdir /app
+copy app/package.json . 
+run npm install && npm install forever -g  && mkdir -p /app/images
+copy /app .
+cmd forever pupp.js

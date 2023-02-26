@@ -1,0 +1,31 @@
+{
+  "name": "scrap",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "pupp.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "node pupp.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ismail5555/scraper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ismail5555/scraper/issues"
+  },
+  "homepage": "https://github.com/ismail5555/scraper#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "node-fetch": "^3.3.0",
+    "puppeteer": "^19.7.2",
+    "puppeteer-extra-plugin-stealth": "^2.11.1",
+    "uuid": "^9.0.0",
+    "ws": "^8.12.1"
+  }
+}

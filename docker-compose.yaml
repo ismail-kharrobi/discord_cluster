@@ -1,0 +1,38 @@
+version : "3.9"
+
+services :
+    scraper:
+      build : 
+        context: ./scrap
+      networks :
+        - app
+      restart: always
+      ports:
+        - "80:80"
+      env_file : ./scrap/.env
+    puppet:
+      build : 
+        context: ./puppeteer
+      restart : always
+      init : true
+      networks : 
+        - app
+      volumes:
+        - cdn_v:/app/images/
+      env_file : ./puppeteer/.env
+    cdn :
+      build :
+        context: ./cdn
+      restart : always
+      networks :
+        - app
+      ports:
+        - "3000:3000"
+      volumes:
+        - cdn_v:/cdn
+      init : true
+
+networks :
+  app:
+volumes:
+  cdn_v:
