@@ -84,7 +84,7 @@ const  performAction = async(name) => {
             "Referer": `https://discord.com/channels/${process.env.SERVER_ID}/${process.env.CHANNEL_ID}`,
             "Referrer-Policy": "strict-origin-when-cross-origin"
           },
-        "body": `{\"content\":\"${process.env.URL_CDN}:${process.env.CDN_PORT}/${name}\",\"nonce\":\"${nonce}\",\"tts\":false,\"flags\":0}`,
+        "body": `{\"content\":\"${process.env.URL_EXTERNAL}/${name}\",\"nonce\":\"${nonce}\",\"tts\":false,\"flags\":0}`,
         "method": "POST",
    
       });
@@ -92,6 +92,26 @@ const  performAction = async(name) => {
       return data;
 }
 
+const save_img = async(uuid) =>
+{
+    await fetch(`${process.env.URL_EXTERNAL}/server2.php?id=${uuid}.png`, {
+    "headers": {
+        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+        "accept-language": "en-US,en;q=0.9",
+        "cache-control": "no-cache",
+        "pragma": "no-cache",
+        "sec-fetch-dest": "document",
+        "sec-fetch-mode": "navigate",
+        "sec-fetch-site": "none",
+        "sec-fetch-user": "?1",
+        "sec-gpc": "1",
+        "upgrade-insecure-requests": "1",
+    },
+    "referrerPolicy": "strict-origin-when-cross-origin",
+    "body": null,
+    "method": "GET"
+    });
+}
 
 async function generate_img(url,name) {
     // puppeteer.use(hidden())
@@ -129,14 +149,15 @@ let cluster =  "cluster2.php"
 const url = `${process.env.URL_PHP}/${cluster}`;
 let uuid = uuidv4();
  await generate_img(url,uuid)
+ await save_img(uuid)
  let msg2 = await performAction(`${uuid}.png`);
  await setTimeout(() => { delete_msg(msg1.id)}, 10000);
 
  await setTimeout(() => {delete_msg(msg2.id)}, 60000);
 
-//  try {
-//   fs.unlinkSync(`./images/${uuid}.png`);
-//   console.log("Delete File successfully.");
-// } catch (error) {
-//   console.log(error);
-// }
+ await setTimeout(() => { try {
+  fs.unlinkSync(`./images/${uuid}.png`);
+  console.log("Delete File successfully.");
+} catch (error) {
+  console.log(error);
+}},10000)

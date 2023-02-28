@@ -7,8 +7,8 @@ services :
       networks :
         - app
       restart: always
-      ports:
-        - "80:80"
+      # ports:
+      #   - "80:80"
       env_file : ./scrap/.env
     puppet:
       build : 
@@ -27,7 +27,7 @@ services :
       networks :
         - app
       ports:
-        - "3000:3000"
+        - "3001:3001"
       volumes:
         - cdn_v:/cdn
       init : true

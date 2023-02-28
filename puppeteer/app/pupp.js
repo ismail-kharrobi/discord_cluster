@@ -11,7 +11,7 @@ exampleSocket.send(`{"op":2,"d":{"token":"${process.env.SOCKET_TOKEN}","capabili
 
 exampleSocket.onmessage = async(event) => {
   const msg = JSON.parse(event.data);
-  if (msg.t === "MESSAGE_CREATE" && (msg.d.content === "/e1" || msg.d.content === "/e2" || msg.d.content === "/map" ) && msg.d.channel_id == "1075395619570589826")
+  if (msg.t === "MESSAGE_CREATE" && (msg.d.content === "/e1" || msg.d.content === "/e2" || msg.d.content === "/map" ) && msg.d.channel_id == `${process.env.CHANNEL_ID}`)
   {
     if (msg.d.content == "/e1")
       cp.fork('proc.js')
