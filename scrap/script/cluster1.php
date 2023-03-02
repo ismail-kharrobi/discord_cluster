@@ -73,9 +73,7 @@ function data()
 				// sleep(1);
 			
 			$p++;
-			// echo json_encode($all, JSON_PRETTY_PRINT);
-			// $all = array_merge($all,$user);
-			// echo "page is $p";
+
 		endwhile;
         return $all;
 }

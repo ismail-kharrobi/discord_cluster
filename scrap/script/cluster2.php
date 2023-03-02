@@ -47,8 +47,6 @@ function data()
 		$p = 1;
 		$all = [];
 
-
-		// return ;
 		while (true):
 
 				$newurl = "https://api.intra.42.fr/v2/campus/21/locations?per_page=100&page=$p&sort=-end_at";
@@ -73,9 +71,6 @@ function data()
 				// sleep(1);
 			
 			$p++;
-			// echo json_encode($all, JSON_PRETTY_PRINT);
-			// $all = array_merge($all,$user);
-			// echo "page is $p";
 		endwhile;
         return $all;
 }
