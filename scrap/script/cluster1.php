@@ -3,8 +3,8 @@
 
 function get_new_token()
 {
-	$SECRET = getenv('SECRET');;
-	$UID = getenv('UID');;
+	$SECRET = getenv('SECRET');
+	$UID = getenv('UID');
 	$url = "https://api.intra.42.fr/oauth/token";
 
 	$data = "grant_type=client_credentials&client_id=$UID&client_secret=$SECRET";
